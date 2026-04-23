@@ -1,9 +1,6 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+"use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { 
   Database, 
   Cpu, 
@@ -24,7 +21,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export default function App() {
+export default function Home() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
