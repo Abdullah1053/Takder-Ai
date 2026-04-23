@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -190,7 +191,7 @@ export default function Home() {
                                  <span className="text-[10px] font-black uppercase text-white tracking-widest">Vector Source Link</span>
                               </div>
                               <p className="text-slate-400 text-sm leading-relaxed italic">
-                                "According to page 43 of the engineering doc, the neural weight adjustment is calibrated at..."
+                                &quot;According to page 43 of the engineering doc, the neural weight adjustment is calibrated at...&quot;
                               </p>
                               <div className="flex items-center gap-2 pt-2">
                                  <div className="px-2 py-1 bg-brand-500/10 rounded text-[8px] font-black text-brand-400 uppercase tracking-widest border border-brand-500/20">citation.pdf</div>
@@ -312,7 +313,15 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-wrap justify-around items-center gap-x-12 gap-y-16 opacity-40 hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0">
              <div className="flex items-center gap-4">
-               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2"><img src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png" alt="Next.js" /></div>
+               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2">
+                 <Image 
+                   src="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png" 
+                   alt="Next.js" 
+                   width={32} 
+                   height={32}
+                   referrerPolicy="no-referrer"
+                 />
+               </div>
                <span className="text-2xl font-black tracking-tighter text-white uppercase italic">Next.js 15+</span>
              </div>
              <div className="flex items-center gap-4">
