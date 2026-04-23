@@ -38,21 +38,20 @@ The application follows a robust **RAG (Retrieval-Augmented Generation)** pipeli
 
 ## 🗓️ The 21-Day Roadmap
 
-### **Week 1: Infrastructure & Data Ingestion**
-- **Day 1-2:** Project initialization, Next.js/Vite environment setup, and theme configuration.
-- **Day 3-4:** Implementation of the file upload system with validation for PDFs and notes.
-- **Day 5-7:** Building the parsing engine: Chunking logic using LangChain and initial PostgreSQL schema design.
+### **Week 01: The Core**
+- **Architecture Setup:** Project initialization with Next.js & PostgreSQL schema design.
+- **Ingestion Engine:** Implementation of the multi-format file ingestion logic (PDF/Notes).
+- **Embedding Pipeline:** Integration of Google GenAI for vectorization of document chunks.
 
-### **Week 2: RAG Pipeline & Intelligence**
-- **Day 8-10:** Embedding integration: Connecting to Google Gemini API for vector generation.
-- **Day 11-12:** Vector DB implementation: Setting up similarity search with pgvector.
-- **Day 13-14:** Prompt Engineering: Refining retrieval logic and grounded generation (adding citations).
+### **Week 02: Intelligence**
+- **Gemini Integration:** Orchestrating LangChain with Google Gemini 1.5 Flash for RAG.
+- **Chat Interface UI:** Developing the interactive natural language query interface.
+- **Vector Refinement:** Optimizing similarity search and retrieval accuracy.
 
-### **Week 3: UX, Performance & Polishing**
-- **Day 15-17:** Crafting the Chat UI: Streaming responses, dark mode, and mobile responsiveness.
-- **Day 18-19:** Knowledge Base Management: UI for deleting, updating, and tagging documents.
-- **Day 20:** Edge cases & security: Auth checks, rate limiting, and PII scanning instructions.
-- **Day 21:** Deployment, final audit, and README/Documentation finalization.
+### **Week 03: Stability**
+- **Security & Access:** Implementation of the authentication layer and role-based access.
+- **Edge Optimizations:** Latency reduction and context window performance tuning.
+- **Production Ready:** Full-scale testing, audit, and production deployment on Vercel/Cloud Run.
 
 ---
 
