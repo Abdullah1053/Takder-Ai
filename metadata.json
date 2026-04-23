@@ -1,0 +1,6 @@
+{
+  "name": "Takder-Ai",
+  "description": "A sophisticated searchable knowledge base that turns PDFs and notes into an AI-powered insights engine using RAG.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
