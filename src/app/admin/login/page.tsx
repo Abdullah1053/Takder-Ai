@@ -13,17 +13,38 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 
 export default function AdminLoginPage() {
   const [accessId, setAccessId] = useState('');
   const [passkey, setPasskey] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleAdminAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate high-security auth
-    setTimeout(() => setIsLoading(false), 2000);
+    setError('');
+
+    try {
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: accessId,
+        password: passkey,
+      });
+
+      if (authError) throw authError;
+      
+      // Verification logic for admin role would typically go here 
+      // (e.g., checking a profiles table or user metadata)
+      
+      router.push('/');
+    } catch (err: any) {
+      setError(err.message || 'Authorization failed. Credentials purged.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -105,6 +126,12 @@ export default function AdminLoginPage() {
                   </div>
                 </div>
               </div>
+
+              {error && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-[10px] font-black uppercase tracking-widest text-center">
+                  {error}
+                </div>
+              )}
 
               <div className="pt-2">
                 <button 
