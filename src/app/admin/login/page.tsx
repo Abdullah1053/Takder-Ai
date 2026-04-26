@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
       // Verification logic for admin role would typically go here 
       // (e.g., checking a profiles table or user metadata)
       
-      router.push('/');
+      router.push('/admin/dashboard');
     } catch (err: any) {
       setError(err.message || 'Authorization failed. Credentials purged.');
     } finally {

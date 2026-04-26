@@ -32,7 +32,7 @@ import { useAuth } from "@/context/auth-context";
 import { LogOut, User as UserIcon, LayoutDashboard, LogIn } from "lucide-react";
 
 export default function Home() {
-  const { user, isLoading, signOut } = useAuth();
+  const { user, isLoading, role, signOut } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
@@ -105,6 +105,14 @@ export default function Home() {
                   </Link>
                 ) : (
                   <div className="flex items-center gap-3">
+                    {role === 'admin' && (
+                      <Link 
+                        href="/admin/dashboard"
+                        className="px-6 py-2.5 border-2 border-brand-500 text-brand-500 rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all active:scale-95 shadow-xl shadow-brand-500/10 flex items-center gap-2"
+                      >
+                        <ShieldCheck size={14} /> Admin
+                      </Link>
+                    )}
                     <Link 
                       href="/dashboard"
                       className="px-6 py-2.5 bg-foreground text-background rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all active:scale-95 shadow-xl shadow-foreground/5 flex items-center gap-2"
