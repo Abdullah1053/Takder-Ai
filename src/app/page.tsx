@@ -28,8 +28,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ModeToggle } from "@/components/mode-toggle";
+import { useAuth } from "@/context/auth-context";
+import { LogOut, User as UserIcon, LayoutDashboard, LogIn } from "lucide-react";
 
 export default function Home() {
+  const { user, isLoading, signOut } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
@@ -89,15 +92,35 @@ export default function Home() {
                 <a href="#developer" className="hover:text-brand-500 transition-colors">Developer</a>
                 <a href="#contact" className="hover:text-brand-500 transition-colors">Contact</a>
              </div>
-             <div className="flex items-center gap-4">
-               <ModeToggle />
-               <Link 
-                href="/dashboard"
-                className="px-6 py-2.5 bg-foreground text-background rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all active:scale-95 shadow-xl shadow-foreground/5"
-               >
-                  Get Started
-               </Link>
-             </div>
+              <div className="flex items-center gap-4">
+                <ModeToggle />
+                {isLoading ? (
+                  <div className="w-20 h-8 bg-muted animate-pulse rounded-full" />
+                ) : !user ? (
+                  <Link 
+                    href="/login"
+                    className="px-6 py-2.5 bg-foreground text-background rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all active:scale-95 shadow-xl shadow-foreground/5 flex items-center gap-2"
+                  >
+                    <LogIn size={14} /> Login
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <Link 
+                      href="/dashboard"
+                      className="px-6 py-2.5 bg-foreground text-background rounded-full font-black text-xs uppercase tracking-widest hover:bg-brand-500 hover:text-white transition-all active:scale-95 shadow-xl shadow-foreground/5 flex items-center gap-2"
+                    >
+                      <LayoutDashboard size={14} /> Dashboard
+                    </Link>
+                    <button 
+                      onClick={() => signOut()}
+                      className="p-2.5 bg-card border border-border rounded-full text-muted-foreground hover:text-brand-500 transition-colors shadow-sm"
+                      title="Logout"
+                    >
+                      <LogOut size={16} />
+                    </button>
+                  </div>
+                )}
+              </div>
           </div>
         </div>
       </nav>

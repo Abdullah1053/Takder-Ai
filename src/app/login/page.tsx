@@ -13,17 +13,35 @@ import {
   User
 } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 
 export default function UserLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate auth
-    setTimeout(() => setIsLoading(false), 1500);
+    setError('');
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+      
+      router.push('/');
+    } catch (err: any) {
+      setError(err.message || 'Sign in failed. Check your data.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -101,6 +119,12 @@ export default function UserLoginPage() {
                 </div>
               </div>
             </div>
+
+            {error && (
+              <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-xs font-bold uppercase tracking-wider text-center">
+                {error}
+              </div>
+            )}
 
             <button 
               disabled={isLoading}
